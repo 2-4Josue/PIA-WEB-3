@@ -2,7 +2,7 @@ services:
   - type: web
     name: aetherwood-studio
     runtime: python
-    buildCommand: "python manage.py migrate"
+    buildCommand: "./build.sh"
     startCommand: "gunicorn aetherwood.wsgi:application"
     envVars:
       - key: PYTHON_VERSION
