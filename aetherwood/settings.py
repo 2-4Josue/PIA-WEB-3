@@ -25,7 +25,7 @@ SECRET_KEY = 'django-insecure-8d0#k%iehdk7_2n8*r=di6bc=5$$zv!fn7dj&rx$y7w2%j5b5_
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['.onrender.com', 'localhost', '127.0.0.1']
 
 
 # Application definition
@@ -117,3 +117,7 @@ USE_TZ = True
 
 STATIC_URL = 'static/'
 STATICFILES_DIRS = [BASE_DIR / 'static']
+
+# Esto es lo nuevo que agregamos para Render (WhiteNoise):
+STATIC_ROOT = BASE_DIR / 'staticfiles'
+STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
