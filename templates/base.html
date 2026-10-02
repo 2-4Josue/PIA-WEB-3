@@ -1,0 +1,55 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{% block title %}Aetherwood Studio{% endblock %}</title>
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+    <!-- Estilos Darks -->
+    <link rel="stylesheet" href="{% static 'style.css' %}">
+</head>
+<body>
+
+    <!-- Menú de Navegación Principal -->
+    <nav class="navbar navbar-expand-lg navbar-dark mb-5 shadow-lg" style="background-color: #080808; border-bottom: 1px solid #333;">
+        <div class="container">
+            <a class="navbar-brand h1 mb-0" href="{% url 'inicio' %}">AETHERWOOD STUDIO</a>
+            
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#menuNavegacion">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            
+            <div class="collapse navbar-collapse" id="menuNavegacion">
+                <ul class="navbar-nav me-auto" style="font-family: 'Cormorant Garamond', serif; font-size: 1.3rem;">
+                    <li class="nav-item">
+                        <a class="nav-link" href="{% url 'inicio' %}">Inicio</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="{% url 'nosotros' %}">El Estudio</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="{% url 'galeria' %}">Galería</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="{% url 'contacto' %}">Contacto</a>
+                    </li>
+                </ul>
+                <!-- Botón para ir a tu Panel de Administrador -->
+                <a href="{% url 'login' %}" class="btn btn-outline-danger btn-sm" style="font-family: 'Cormorant Garamond'; font-size: 1.1rem;">Acceso Oculto</a>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Aquí se inyectará el contenido de las otras páginas automáticamente -->
+    <div class="container">
+        {% block content %}
+        {% endblock %}
+    </div>
+
+    <!-- jQuery y Bootstrap JS -->
+    <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>

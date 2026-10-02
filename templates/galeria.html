@@ -1,0 +1,49 @@
+{% extends 'base.html' %}
+
+{% block title %}Galería - Aetherwood{% endblock %}
+
+{% block content %}
+<div class="container py-4">
+    <!-- Título de la sección -->
+    <div class="text-center mb-5">
+        <h2 class="display-4 fw-bold text-white" style="font-family: 'Cormorant Garamond', serif;">El Grimorio Visual</h2>
+        <p class="text-secondary fs-5">Una muestra de los pactos grabados en la piel de nuestros clientes.</p>
+    </div>
+
+    <!-- Cuadrícula de Imágenes (Multimedia) -->
+    <div class="row g-4">
+        <!-- Imagen 1 -->
+        <div class="col-md-4">
+            <div class="card bg-dark border-secondary border-opacity-25 shadow-lg h-100">
+                <img src="https://images.unsplash.com/photo-1598371839696-5c5bb00bdc28?q=80&w=500&auto=format&fit=crop" class="card-img-top" alt="Tatuaje 1" style="height: 280px; object-fit: cover; filter: grayscale(80%) contrast(120%);">
+                <div class="card-body">
+                    <h5 class="text-white" style="font-family: 'Cormorant Garamond';">Sello Alquímico</h5>
+                    <p class="text-secondary small">Estilo: Fine Line / Geométrico</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Imagen 2 -->
+        <div class="col-md-4">
+            <div class="card bg-dark border-secondary border-opacity-25 shadow-lg h-100">
+                <img src="https://images.unsplash.com/photo-1611501275017-9b62dee6a05d?q=80&w=500&auto=format&fit=crop" class="card-img-top" alt="Tatuaje 2" style="height: 280px; object-fit: cover; filter: grayscale(80%) contrast(120%);">
+                <div class="card-body">
+                    <h5 class="text-white" style="font-family: 'Cormorant Garamond';">Fauna Nocturna</h5>
+                    <p class="text-secondary small">Estilo: Blackwork / Oscuro</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Imagen 3 -->
+        <div class="col-md-4">
+            <div class="card bg-dark border-secondary border-opacity-25 shadow-lg h-100">
+                <img src="https://images.unsplash.com/photo-1562967916-eb82221dfb92?q=80&w=500&auto=format&fit=crop" class="card-img-top" alt="Tatuaje 3" style="height: 280px; object-fit: cover; filter: grayscale(80%) contrast(120%);">
+                <div class="card-body">
+                    <h5 class="text-white" style="font-family: 'Cormorant Garamond';">Sombra Eterna</h5>
+                    <p class="text-secondary small">Estilo: Realismo Sombrío</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

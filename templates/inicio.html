@@ -1,0 +1,33 @@
+{% extends 'base.html' %}
+
+{% block title %}Inicio - Aetherwood{% endblock %}
+
+{% block content %}
+<div class="row align-items-center mt-5" style="min-height: 65vh;">
+    <!-- Texto de Bienvenida -->
+    <div class="col-md-6 text-center text-md-start mb-5">
+        <h1 class="display-3 fw-bold text-white mb-4" style="font-family: 'Cormorant Garamond', serif;">El Arte del Abismo</h1>
+        <p class="text-secondary fs-5 mb-5" style="line-height: 1.8;">
+            Bienvenido a Aetherwood Studio. No solo hacemos tatuajes, grabamos visiones en tu piel. Explora nuestro grimorio de diseños oscuros y sella tu pacto con nosotros.
+        </p>
+        <a href="{% url 'galeria' %}" class="btn btn-outline-danger btn-lg me-3 mb-3" style="font-family: 'Cormorant Garamond'; font-size: 1.3rem;">Ver Visiones</a>
+        <a href="{% url 'contacto' %}" class="btn btn-darks btn-lg mb-3">Invocar Cita</a>
+    </div>
+    
+    <!-- Imagen decorativa con filtro oscuro -->
+    <div class="col-md-6 text-center" style="display: none;" id="imagenInicio">
+        <div class="border border-danger border-opacity-50 p-2 rounded shadow-lg d-inline-block" style="background-color: #0a0a0a;">
+            <!-- Usamos una imagen de muestra de Unsplash con un filtro en blanco y negro -->
+            <img src="https://images.unsplash.com/photo-1598371839696-5c5bb00bdc28?q=80&w=600&auto=format&fit=crop" alt="Aetherwood Art" class="img-fluid rounded" style="max-height: 400px; object-fit: cover; filter: grayscale(100%) contrast(120%); opacity: 0.8;">
+        </div>
+    </div>
+</div>
+
+<!-- Pequeña animación con jQuery -->
+<script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
+<script>
+    $(document).ready(function(){
+        $("#imagenInicio").fadeIn(2000);
+    });
+</script>
+{% endblock %}
