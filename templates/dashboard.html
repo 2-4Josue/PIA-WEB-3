@@ -1,3 +1,4 @@
+{% load static %}
 <!DOCTYPE html>
 <html lang="es">
 <head>
@@ -5,14 +6,14 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Aetherwood - Panel</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
-    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+    <link rel="stylesheet" href="{% static 'style.css' %}">
 </head>
 <body>
 
     <nav class="navbar mb-5 shadow-lg" style="background-color: #080808; border-bottom: 1px solid #333;">
         <div class="container">
             <span class="navbar-brand mb-0 h1">AETHERWOOD STUDIO</span>
-            <a href="/" class="btn btn-outline-danger btn-sm" style="font-family: 'Cormorant Garamond';">Cerrar Sesión</a>
+            <a href="{% url 'login' %}" class="btn btn-outline-danger btn-sm" style="font-family: 'Cormorant Garamond';">Cerrar Sesión</a>
         </div>
     </nav>
 
@@ -21,11 +22,12 @@
             
             <div class="col-md-4 mb-4">
                 <div class="card">
-                    <div class="card-header">Registrar Citas</div>
+                    <div class="card-header">Invocar Cita</div>
                     <div class="card-body p-4">
-                        <form method="POST" action="/dashboard" id="registroForm">
+                        <form method="POST" action="{% url 'dashboard' %}" id="registroForm">
+                            {% csrf_token %}
                             <div class="mb-3">
-                                <label class="form-label text-secondary">Cliente</label>
+                                <label class="form-label text-secondary">Alma / Cliente</label>
                                 <input type="text" class="form-control" name="nombre" required>
                             </div>
                             <div class="mb-3">
@@ -33,10 +35,10 @@
                                 <input type="text" class="form-control" name="tatuaje" required>
                             </div>
                             <div class="mb-4">
-                                <label class="form-label text-secondary">Día de la cita</label>
+                                <label class="form-label text-secondary">Día del Ritual</label>
                                 <input type="date" class="form-control" name="fecha" required>
                             </div>
-                            <button type="submit" class="btn btn-darks w-100">Guardar</button>
+                            <button type="submit" class="btn btn-darks w-100">Sellar Pacto</button>
                         </form>
                     </div>
                 </div>
@@ -45,7 +47,7 @@
             <div class="col-md-8">
                 <div class="card">
                     <div class="card-header d-flex justify-content-between align-items-center">
-                        <span>Registro de Clientes</span>
+                        <span>Registro de Almas</span>
                         <button id="btnOcultar" class="btn btn-sm btn-outline-danger" style="font-family: 'Cormorant Garamond';">Ocultar Visiones</button>
                     </div>
                     <div class="card-body p-0" id="tablaContenedor">
@@ -56,21 +58,21 @@
                                         <th>Cliente</th>
                                         <th>Tatuaje</th>
                                         <th>Fecha</th>
-                                        <th>Modificar</th>
+                                        <th>Destino</th>
                                     </tr>
                                 </thead>
                                 <tbody>
                                     {% for cliente in clientes %}
                                     <tr>
-                                        <!-- Aplicamos text-white a todos los datos -->
                                         <td class="fw-bold text-white" style="font-size: 1.2rem;">{{ cliente.nombre }}</td>
                                         <td class="text-white">{{ cliente.tatuaje }}</td>
                                         <td class="text-white">{{ cliente.fecha }}</td>
                                         <td>
-                                            <a href="/editar/{{ loop.index0 }}" class="btn btn-sm btn-outline-danger" style="font-family: 'Cormorant Garamond';">Modificar</a>
+                                            <!-- Django usa forloop.counter0 en lugar de loop.index0 -->
+                                            <a href="{% url 'editar' forloop.counter0 %}" class="btn btn-sm btn-outline-danger" style="font-family: 'Cormorant Garamond';">Modificar</a>
                                         </td>
                                     </tr>
-                                    {% else %}
+                                    {% empty %}
                                     <tr>
                                         <td colspan="4" class="text-center text-muted py-5" style="font-style: italic;">El grimorio está vacío...</td>
                                     </tr>
