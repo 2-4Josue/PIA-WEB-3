@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dashboard - Registros</title>
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+</head>
+<body class="bg-light">
+
+    <!-- Barra de navegación -->
+    <nav class="navbar navbar-dark bg-dark mb-4 shadow">
+        <div class="container">
+            <span class="navbar-brand mb-0 h1 font-monospace">AETHERWOOD | PANEL</span>
+            <a href="/" class="btn btn-outline-light btn-sm">Cerrar Sesión</a>
+        </div>
+    </nav>
+
+    <div class="container">
+        <div class="row">
+            
+            <!-- Formulario para Guardar Info -->
+            <div class="col-md-4 mb-4">
+                <div class="card shadow-sm border-0">
+                    <div class="card-header bg-dark text-white font-monospace">Nuevo Registro</div>
+                    <div class="card-body">
+                        <form method="POST" action="/dashboard" id="registroForm">
+                            <div class="mb-3">
+                                <label for="nombre" class="form-label">Nombre del Cliente</label>
+                                <input type="text" class="form-control" id="nombre" name="nombre" required>
+                            </div>
+                            <div class="mb-3">
+                                <label for="tatuaje" class="form-label">Diseño / Zona</label>
+                                <input type="text" class="form-control" id="tatuaje" name="tatuaje" required>
+                            </div>
+                            <div class="mb-3">
+                                <label for="fecha" class="form-label">Fecha de Cita</label>
+                                <input type="date" class="form-control" id="fecha" name="fecha" required>
+                            </div>
+                            <button type="submit" class="btn btn-dark w-100">Guardar en JSON</button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Tabla para Consultar Info -->
+            <div class="col-md-8">
+                <div class="card shadow-sm border-0">
+                    <div class="card-header bg-dark text-white d-flex justify-content-between align-items-center font-monospace">
+                        <span>Base de Datos</span>
+                        <button id="btnOcultar" class="btn btn-sm btn-outline-light">Ocultar/Mostrar</button>
+                    </div>
+                    <div class="card-body" id="tablaContenedor">
+                        <div class="table-responsive">
+                            <table class="table table-hover align-middle">
+                                <thead class="table-dark">
+                                    <tr>
+                                        <th>Cliente</th>
+                                        <th>Tatuaje</th>
+                                        <th>Fecha</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <!-- Ciclo For de Jinja para leer el JSON -->
+                                    {% for cliente in clientes %}
+                                    <tr>
+                                        <td class="fw-bold">{{ cliente.nombre }}</td>
+                                        <td>{{ cliente.tatuaje }}</td>
+                                        <td>{{ cliente.fecha }}</td>
+                                    </tr>
+                                    {% else %}
+                                    <tr>
+                                        <td colspan="3" class="text-center text-muted py-4">No hay clientes registrados en clientes.json.</td>
+                                    </tr>
+                                    {% endfor %}
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+
+    <!-- Bootstrap JS (opcional) y jQuery -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
+    <script>
+        $(document).ready(function(){
+            // Función jQuery para ocultar/mostrar la tabla
+            $("#btnOcultar").click(function(){
+                $("#tablaContenedor").slideToggle();
+            });
+        });
+    </script>
+</body>
+</html>
