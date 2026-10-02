@@ -53,5 +53,21 @@ def dashboard():
         
     return render_template('dashboard.html', clientes=clientes)
 
+# NUEVA RUTA: Actualizar (Editar)
+@app.route('/editar/<int:id>', methods=['GET', 'POST'])
+def editar(id):
+    clientes = leer_json(CLIENTS_FILE)
+    
+    if request.method == 'POST':
+        # Reemplazar los datos viejos con los nuevos
+        clientes[id]['nombre'] = request.form['nombre']
+        clientes[id]['tatuaje'] = request.form['tatuaje']
+        clientes[id]['fecha'] = request.form['fecha']
+        guardar_json(CLIENTS_FILE, clientes)
+        return redirect(url_for('dashboard'))
+        
+    # Mostrar el formulario con los datos actuales
+    return render_template('editar.html', cliente=clientes[id], id=id)
+
 if __name__ == '__main__':
     app.run(debug=True)

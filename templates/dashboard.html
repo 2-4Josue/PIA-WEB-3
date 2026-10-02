@@ -59,9 +59,28 @@
                                         <th>Cliente</th>
                                         <th>Tatuaje</th>
                                         <th>Fecha</th>
+                                        <th>Acciones</th> <!-- Nueva columna -->
                                     </tr>
                                 </thead>
                                 <tbody>
+                                    {% for cliente in clientes %}
+                                    <tr>
+                                        <td class="fw-bold">{{ cliente.nombre }}</td>
+                                        <td>{{ cliente.tatuaje }}</td>
+                                        <td>{{ cliente.fecha }}</td>
+                                        <td>
+                                            <!-- Botón que envía al ID correcto en el JSON -->
+                                            <a href="/editar/{{ loop.index0 }}" class="btn btn-sm btn-outline-warning fw-bold">Editar</a>
+                                        </td>
+                                    </tr>
+                                    {% else %}
+                                    <tr>
+                                        <td colspan="4" class="text-center text-muted py-4">No hay clientes registrados.</td>
+                                    </tr>
+                                    {% endfor %}
+                                </tbody>
+                            </table>
+                        </div>
                                     <!-- Ciclo For de Jinja para leer el JSON -->
                                     {% for cliente in clientes %}
                                     <tr>
